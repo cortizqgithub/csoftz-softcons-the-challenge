@@ -12,9 +12,10 @@
  Feb.07/2018 COQ  File created.
  -----------------------------------------------------------------------------*/
 
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using CSoftZ.User.Info.Api.Domain;
+using CSoftZ.User.Info.Api.Helper.Consts;
 using CSoftZ.User.Info.Api.Services.Interfaces;
 
 namespace CSoftZ.User.Info.Api.Services
@@ -32,9 +33,12 @@ namespace CSoftZ.User.Info.Api.Services
         public MemoryUserService()
         {
             this.users = new List<UserData>();
-            this.users.Add(new UserData() { Id = 1, Name = "Colombia" });
-            this.users.Add(new UserData() { Id = 2, Name = "United Users" });
-            this.users.Add(new UserData() { Id = 3, Name = "Peru" });
+
+            var userData = new UserData() { Id = 1, Name = "Charlie Brown" };
+            userData.Addresses.Add(new AddressData() { Id = 1, Name = "Address 1", CityData = new CityData() { Id = 1, Name = GlobalConstants.CITY_COLOMBIA_ANTIOQUIA_MEDELLIN, StateData = new StateData() { Id = 1, Name = GlobalConstants.STATE_COLOMBIA_ANTIOQUIA, CountryData = new CountryData() { Id = 1, Name = GlobalConstants.COUNTRY_COLOMBIA } } } });
+            userData.Addresses.Add(new AddressData() { Id = 2, Name = "Address 2", CityData = new CityData() { Id = 3, Name = GlobalConstants.CITY_UNITED_STATES_FLORIDA, StateData = new StateData() { Id = 4, Name = GlobalConstants.STATE_UNITED_STATES_FLORIDA, CountryData = new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES } } } });
+            this.users.Add(userData);
+
         }
 
         /// <summary>

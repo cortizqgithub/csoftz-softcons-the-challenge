@@ -12,9 +12,10 @@
  Feb.07/2018 COQ  File created.
  -----------------------------------------------------------------------------*/
 
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using CSoftZ.User.Info.Api.Domain;
+using CSoftZ.User.Info.Api.Helper.Consts;
 using CSoftZ.User.Info.Api.Services.Interfaces;
 
 namespace CSoftZ.User.Info.Api.Services
@@ -32,9 +33,13 @@ namespace CSoftZ.User.Info.Api.Services
         public MemoryStateService()
         {
             this.states = new List<StateData>();
-            this.states.Add(new StateData() { Id = 1, Name = "Colombia" });
-            this.states.Add(new StateData() { Id = 2, Name = "United States" });
-            this.states.Add(new StateData() { Id = 3, Name = "Peru" });
+            this.states.Add(new StateData() { Id = 1, Name = GlobalConstants.STATE_COLOMBIA_ANTIOQUIA, CountryData = new CountryData() { Id = 1, Name = GlobalConstants.COUNTRY_COLOMBIA } });
+            this.states.Add(new StateData() { Id = 2, Name = GlobalConstants.STATE_COLOMBIA_CALDAS, CountryData = new CountryData() { Id = 1, Name = GlobalConstants.COUNTRY_COLOMBIA } });
+            this.states.Add(new StateData() { Id = 3, Name = GlobalConstants.STATE_COLOMBIA_ATLANTICO, CountryData = new CountryData() { Id = 1, Name = GlobalConstants.COUNTRY_COLOMBIA } });
+            this.states.Add(new StateData() { Id = 4, Name = GlobalConstants.STATE_UNITED_STATES_FLORIDA, CountryData = new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES } });
+            this.states.Add(new StateData() { Id = 5, Name = GlobalConstants.STATE_UNITED_STATES_NEW_YORK, CountryData = new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES } });
+            this.states.Add(new StateData() { Id = 6, Name = GlobalConstants.STATE_PERU_MADRE_DE_DIOS, CountryData = new CountryData() { Id = 3, Name = GlobalConstants.COUNTRY_PERU } });
+            this.states.Add(new StateData() { Id = 7, Name = GlobalConstants.STATE_PERU_LIMA, CountryData = new CountryData() { Id = 3, Name = GlobalConstants.COUNTRY_PERU } });
         }
 
         /// <summary>
@@ -77,7 +82,8 @@ namespace CSoftZ.User.Info.Api.Services
         public StateData Update(StateData item)
         {
             var info = this.GetById(item.Id);
-            if (info != null){
+            if (info != null)
+            {
                 info.Name = item.Name;
             }
             return info;
@@ -91,7 +97,8 @@ namespace CSoftZ.User.Info.Api.Services
         public StateData Remove(long id)
         {
             var info = this.GetById(id);
-            if (info != null) {
+            if (info != null)
+            {
                 this.states.Remove(info);
             }
             return info;

@@ -11,6 +11,8 @@
     <Folder Include="Services\" />
     <Folder Include="Services\Interfaces\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Helper\" />
+    <Folder Include="Helper\Consts\" />
   </ItemGroup>
 
   <ItemGroup>

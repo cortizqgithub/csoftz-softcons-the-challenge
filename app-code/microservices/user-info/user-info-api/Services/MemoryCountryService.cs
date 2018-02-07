@@ -12,9 +12,10 @@
  Feb.06/2018 COQ  File created.
  -----------------------------------------------------------------------------*/
 
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using CSoftZ.User.Info.Api.Domain;
+using CSoftZ.User.Info.Api.Helper.Consts;
 using CSoftZ.User.Info.Api.Services.Interfaces;
 
 namespace CSoftZ.User.Info.Api.Services
@@ -32,9 +33,9 @@ namespace CSoftZ.User.Info.Api.Services
         public MemoryCountryService()
         {
             this.countries = new List<CountryData>();
-            this.countries.Add(new CountryData() { Id = 1, Name = "Colombia" });
-            this.countries.Add(new CountryData() { Id = 2, Name = "United States" });
-            this.countries.Add(new CountryData() { Id = 3, Name = "Peru" });
+            this.countries.Add(new CountryData() { Id = 1, Name = GlobalConstants.COUNTRY_COLOMBIA });
+            this.countries.Add(new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES });
+            this.countries.Add(new CountryData() { Id = 3, Name = GlobalConstants.COUNTRY_PERU });
         }
 
         /// <summary>
@@ -77,7 +78,8 @@ namespace CSoftZ.User.Info.Api.Services
         public CountryData Update(CountryData item)
         {
             var info = this.GetById(item.Id);
-            if (info != null){
+            if (info != null)
+            {
                 info.Name = item.Name;
             }
             return info;
@@ -91,7 +93,8 @@ namespace CSoftZ.User.Info.Api.Services
         public CountryData Remove(long id)
         {
             var info = this.GetById(id);
-            if (info != null) {
+            if (info != null)
+            {
                 this.countries.Remove(info);
             }
             return info;
