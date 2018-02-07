@@ -38,7 +38,6 @@ namespace CSoftZ.User.Info.Api.Services
             userData.Addresses.Add(new AddressData() { Id = 1, Name = "Address 1", CityData = new CityData() { Id = 1, Name = GlobalConstants.CITY_COLOMBIA_ANTIOQUIA_MEDELLIN, StateData = new StateData() { Id = 1, Name = GlobalConstants.STATE_COLOMBIA_ANTIOQUIA, CountryData = new CountryData() { Id = 1, Name = GlobalConstants.COUNTRY_COLOMBIA } } } });
             userData.Addresses.Add(new AddressData() { Id = 2, Name = "Address 2", CityData = new CityData() { Id = 3, Name = GlobalConstants.CITY_UNITED_STATES_FLORIDA, StateData = new StateData() { Id = 4, Name = GlobalConstants.STATE_UNITED_STATES_FLORIDA, CountryData = new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES } } } });
             this.users.Add(userData);
-
         }
 
         /// <summary>
