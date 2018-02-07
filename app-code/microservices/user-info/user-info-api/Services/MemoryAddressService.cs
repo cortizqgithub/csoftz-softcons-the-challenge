@@ -1,15 +1,15 @@
 ﻿/*----------------------------------------------------------------------------*/
-/* Source File:   MEMORYCOUNTRYSERVICE.CS                                     */
-/* Description:   Service implementation to manage CountryData information.   */
+/* Source File:   MEMORYADDRESSSERVICE.CS                                     */
+/* Description:   Service implementation to manage AddressData information.   */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
-/* Date:          Feb.06/2018                                                 */
+/* Date:          Feb.07/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
  History
- Feb.06/2018 COQ  File created.
+ Feb.07/2018 COQ  File created.
  -----------------------------------------------------------------------------*/
 
 using System.Linq;
@@ -20,30 +20,30 @@ using CSoftZ.User.Info.Api.Services.Interfaces;
 namespace CSoftZ.User.Info.Api.Services
 {
     /// <summary>
-    /// Service implementation to manage CountryData information.
+    /// Service implementation to manage AddressData information.
     /// </summary>
-    public class MemoryCountryService : ICountryService
+    public class MemoryAddressService : IAddressService
     {
-        private List<CountryData> countries;
+        private List<AddressData> addresses;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Services.MemoryCountryService"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Services.MemoryAddressService"/> class.
         /// </summary>
-        public MemoryCountryService()
+        public MemoryAddressService()
         {
-            this.countries = new List<CountryData>();
-            this.countries.Add(new CountryData() { Id = 1, Name = "Colombia" });
-            this.countries.Add(new CountryData() { Id = 2, Name = "United States" });
-            this.countries.Add(new CountryData() { Id = 3, Name = "Peru" });
+            this.addresses = new List<AddressData>();
+            this.addresses.Add(new AddressData() { Id = 1, Name = "Colombia" });
+            this.addresses.Add(new AddressData() { Id = 2, Name = "United Addresss" });
+            this.addresses.Add(new AddressData() { Id = 3, Name = "Peru" });
         }
 
         /// <summary>
-        /// Retrieves all records for Countries.
+        /// Retrieves all records for Addreses.
         /// </summary>
-        /// <returns>List of Countries</returns>
-        public List<CountryData> GetAll()
+        /// <returns>List of Addresses</returns>
+        public List<AddressData> GetAll()
         {
-            return countries;
+            return addresses;
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace CSoftZ.User.Info.Api.Services
         /// </summary>
         /// <returns>Null if not found.</returns>
         /// <param name="id">Identifier to look for.</param>
-        public CountryData GetById(long id)
+        public AddressData GetById(long id)
         {
-            return this.countries.FirstOrDefault(c => c.Id == id);
+            return this.addresses.FirstOrDefault(c => c.Id == id);
         }
 
         /// <summary>
@@ -61,11 +61,11 @@ namespace CSoftZ.User.Info.Api.Services
         /// </summary>
         /// <returns>The newly created record.</returns>
         /// <param name="item">Information to use</param>
-        public CountryData Create(CountryData item)
+        public AddressData Create(AddressData item)
         {
-            var numItems = this.countries.Count;
-            var newItem = new CountryData() { Id = numItems + 1, Name = item.Name };
-            this.countries.Add(newItem);
+            var numItems = this.addresses.Count;
+            var newItem = new AddressData() { Id = numItems + 1, Name = item.Name };
+            this.addresses.Add(newItem);
             return newItem;
         }
 
@@ -74,7 +74,7 @@ namespace CSoftZ.User.Info.Api.Services
         /// </summary>
         /// <returns>NULL if record not found or the modified record.</returns>
         /// <param name="item">Information to use</param>
-        public CountryData Update(CountryData item)
+        public AddressData Update(AddressData item)
         {
             var info = this.GetById(item.Id);
             if (info != null){
@@ -88,11 +88,11 @@ namespace CSoftZ.User.Info.Api.Services
         /// </summary>
         /// <returns>The remove.</returns>
         /// <param name="id">Identifier to look for.</param>
-        public CountryData Remove(long id)
+        public AddressData Remove(long id)
         {
             var info = this.GetById(id);
             if (info != null) {
-                this.countries.Remove(info);
+                this.addresses.Remove(info);
             }
             return info;
         }
