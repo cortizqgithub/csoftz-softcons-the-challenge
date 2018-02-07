@@ -1,6 +1,6 @@
 ﻿/*----------------------------------------------------------------------------*/
-/* Source File:   CITYCONTROLLER.CS                                           */
-/* Description:   MVC Controller to manage CityData information.              */
+/* Source File:   ADDRESSCONTROLLER.CS                                        */
+/* Description:   MVC Controller to manage AddressData information.           */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
@@ -20,43 +20,43 @@ using Microsoft.AspNetCore.Mvc;
 namespace CSoftZ.User.Info.Api.Controllers
 {
     /// <summary>
-    /// MVC Controller to manage CityData information.
+    /// MVC Controller to manage AddressData information.
     /// </summary>
     [Route("userinfo/api/v1/[controller]")]
-    public class CityController : Controller
+    public class AddressController : Controller
     {
-        private readonly ICityService cityService;
+        private readonly IAddressService addressService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.CityController"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.AddressController"/> class.
         /// </summary>
-        /// <param name="cityService">City service.</param>
-        public CityController(ICityService cityService)
+        /// <param name="addressService">Address service.</param>
+        public AddressController(IAddressService addressService)
         {
-            this.cityService = cityService;
+            this.addressService = addressService;
         }
 
         /// <summary>
-        /// Responds to the URL: GET /userinfo/api/v1/city
+        /// Responds to the URL: GET /userinfo/api/v1/address
         /// Retrieves all records.
         /// </summary>
         /// <returns>A list of all countries</returns>
         [HttpGet]
-        public List<CityData> GetAll()
+        public List<AddressData> GetAll()
         {
-            return cityService.GetAll();
+            return addressService.GetAll();
         }
 
         /// <summary>
-        /// Responds to the URL: GET /userinfo/api/v1/city/{id}.
+        /// Responds to the URL: GET /userinfo/api/v1/address/{id}.
         /// Where {id} is a placeholder for the id to look for.
         /// </summary>
         /// <returns>A HTTP Not Found or object found</returns>
         /// <param name="id">Identifier to look up.</param>
-        [HttpGet("{id}", Name = "GetCityData")]
+        [HttpGet("{id}", Name = "GetAddressData")]
         public IActionResult GetById(long id)
         {
-            var item = cityService.GetById(id);
+            var item = addressService.GetById(id);
             if (item == null)
             {
                 return NotFound();
@@ -65,25 +65,25 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
-        /// Responds to the URL: POST /userinfo/api/v1/city
+        /// Responds to the URL: POST /userinfo/api/v1/address
         /// Create a record in storage.
         /// </summary>
         /// <returns>The created record and HTTP status created</returns>
         /// <param name="item">Record information to create.</param>
         [HttpPost]
-        public IActionResult Create([FromBody] CityData item)
+        public IActionResult Create([FromBody] AddressData item)
         {
             if (item == null)
             {
                 return BadRequest();
             }
 
-            var info = cityService.Create(item);
-            return CreatedAtRoute("GetCityData", new { id = info.Id }, info);
+            var info = addressService.Create(item);
+            return CreatedAtRoute("GetAddressData", new { id = info.Id }, info);
         }
 
         /// <summary>
-        /// Responds to URL: PUT /userinfo/api/v1/city/{id}.
+        /// Responds to URL: PUT /userinfo/api/v1/address/{id}.
         /// Where {id} is a placeholder for the id to look for.
         /// </summary>
         /// <returns>A bad request if parameters are not corrrect.
@@ -92,14 +92,14 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <param name="id">Identifier to update.</param>
         /// <param name="item">Record information to update.</param>
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] CityData item)
+        public IActionResult Update(long id, [FromBody] AddressData item)
         {
             if (item == null || item.Id != id)
             {
                 return BadRequest();
             }
 
-            var info = cityService.Update(item);
+            var info = addressService.Update(item);
             if (info == null)
             {
                 return NotFound();
@@ -108,7 +108,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
-        /// Responds to URL: DELETE /userinfo/api/v1/city/{id}.
+        /// Responds to URL: DELETE /userinfo/api/v1/address/{id}.
         /// Removes ID from storage.
         /// </summary>
         /// <returns>Not found if ID is not in storage.</returns>
@@ -116,7 +116,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var info = cityService.Remove(id);
+            var info = addressService.Remove(id);
             if (info == null)
             {
                 return NotFound();

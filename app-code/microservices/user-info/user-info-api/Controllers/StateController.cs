@@ -30,7 +30,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.StateController"/> class.
         /// </summary>
-        /// <param name="stateService">StateData service.</param>
+        /// <param name="stateService">State service.</param>
         public StateController(IStateService stateService)
         {
             this.stateService = stateService;

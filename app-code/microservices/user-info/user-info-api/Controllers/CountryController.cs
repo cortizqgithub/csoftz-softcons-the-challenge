@@ -30,7 +30,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="T:User.Info.Api.Controllers.CountryController"/> class.
         /// </summary>
-        /// <param name="countryService">CountryData service.</param>
+        /// <param name="countryService">Country service.</param>
         public CountryController(ICountryService countryService)
         {
             this.countryService = countryService;
