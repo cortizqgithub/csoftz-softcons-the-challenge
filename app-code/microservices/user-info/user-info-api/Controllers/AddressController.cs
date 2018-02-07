@@ -40,7 +40,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// Responds to the URL: GET /userinfo/api/v1/address
         /// Retrieves all records.
         /// </summary>
-        /// <returns>A list of all countries</returns>
+        /// <returns>A list of all addresses</returns>
         [HttpGet]
         public List<AddressData> GetAll()
         {

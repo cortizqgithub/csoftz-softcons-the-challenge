@@ -1,6 +1,6 @@
 ﻿/*----------------------------------------------------------------------------*/
-/* Source File:   STATECONTROLLER.CS                                          */
-/* Description:   MVC Controller to manage StateData information.             */
+/* Source File:   USERCONTROLLER.CS                                           */
+/* Description:   MVC Controller to manage UserData information.              */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
@@ -13,50 +13,50 @@
  -----------------------------------------------------------------------------*/
 
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using CSoftZ.User.Info.Api.Domain;
 using CSoftZ.User.Info.Api.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CSoftZ.User.Info.Api.Controllers
 {
     /// <summary>
-    /// MVC Controller to manage StateData information.
+    /// MVC Controller to manage UserData information.
     /// </summary>
     [Route("userinfo/api/v1/[controller]")]
-    public class StateController : Controller
+    public class UserController : Controller
     {
-        private readonly IStateService stateService;
+        private readonly IUserService userService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.StateController"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.UserController"/> class.
         /// </summary>
-        /// <param name="stateService">State service.</param>
-        public StateController(IStateService stateService)
+        /// <param name="userService">User service.</param>
+        public UserController(IUserService userService)
         {
-            this.stateService = stateService;
+            this.userService = userService;
         }
 
         /// <summary>
-        /// Responds to the URL: GET /userinfo/api/v1/state
+        /// Responds to the URL: GET /userinfo/api/v1/user
         /// Retrieves all records.
         /// </summary>
-        /// <returns>A list of all states</returns>
+        /// <returns>A list of all users</returns>
         [HttpGet]
-        public List<StateData> GetAll()
+        public List<UserData> GetAll()
         {
-            return stateService.GetAll();
+            return userService.GetAll();
         }
 
         /// <summary>
-        /// Responds to the URL: GET /userinfo/api/v1/state/{id}.
+        /// Responds to the URL: GET /userinfo/api/v1/user/{id}.
         /// Where {id} is a placeholder for the id to look for.
         /// </summary>
         /// <returns>A HTTP Not Found or object found</returns>
         /// <param name="id">Identifier to look up.</param>
-        [HttpGet("{id}", Name = "GetStateData")]
+        [HttpGet("{id}", Name = "GetUserData")]
         public IActionResult GetById(long id)
         {
-            var item = stateService.GetById(id);
+            var item = userService.GetById(id);
             if (item == null)
             {
                 return NotFound();
@@ -65,25 +65,25 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
-        /// Responds to the URL: POST /userinfo/api/v1/state
+        /// Responds to the URL: POST /userinfo/api/v1/user
         /// Create a record in storage.
         /// </summary>
         /// <returns>The created record and HTTP status created</returns>
         /// <param name="item">Record information to create.</param>
         [HttpPost]
-        public IActionResult Create([FromBody] StateData item)
+        public IActionResult Create([FromBody] UserData item)
         {
             if (item == null)
             {
                 return BadRequest();
             }
 
-            var info = stateService.Create(item);
-            return CreatedAtRoute("GetStateData", new { id = info.Id }, info);
+            var info = userService.Create(item);
+            return CreatedAtRoute("GetUserData", new { id = info.Id }, info);
         }
 
         /// <summary>
-        /// Responds to URL: PUT /userinfo/api/v1/state/{id}.
+        /// Responds to URL: PUT /userinfo/api/v1/user/{id}.
         /// Where {id} is a placeholder for the id to look for.
         /// </summary>
         /// <returns>A bad request if parameters are not corrrect.
@@ -92,14 +92,14 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <param name="id">Identifier to update.</param>
         /// <param name="item">Record information to update.</param>
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] StateData item)
+        public IActionResult Update(long id, [FromBody] UserData item)
         {
             if (item == null || item.Id != id)
             {
                 return BadRequest();
             }
 
-            var info = stateService.Update(item);
+            var info = userService.Update(item);
             if (info == null)
             {
                 return NotFound();
@@ -108,7 +108,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
-        /// Responds to URL: DELETE /userinfo/api/v1/state/{id}.
+        /// Responds to URL: DELETE /userinfo/api/v1/user/{id}.
         /// Removes ID from storage.
         /// </summary>
         /// <returns>Not found if ID is not in storage.</returns>
@@ -116,7 +116,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var info = stateService.Remove(id);
+            var info = userService.Remove(id);
             if (info == null)
             {
                 return NotFound();
