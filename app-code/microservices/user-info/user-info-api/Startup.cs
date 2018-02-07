@@ -41,6 +41,9 @@ namespace CSoftZ.User.Info.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<ICountryService>(new MemoryCountryService());
+            services.AddSingleton<IStateService>(new MemoryStateService());
+            services.AddSingleton<ICityService>(new MemoryCityService());
+            services.AddSingleton<IAddressService>(new MemoryAddressService());
             services.AddMvc();
         }
 
