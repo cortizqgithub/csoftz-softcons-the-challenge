@@ -1,6 +1,6 @@
 ﻿/*----------------------------------------------------------------------------*/
 /* Source File:   STATECONTROLLER.CS                                          */
-/* Description:   MVC Controller to manage StateData information.                 */
+/* Description:   MVC Controller to manage StateData information.             */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
@@ -23,21 +23,21 @@ namespace CSoftZ.User.Info.Api.Controllers
     /// MVC Controller to manage StateData information.
     /// </summary>
     [Route("userinfo/api/v1/[controller]")]
-    public class StateDataController : Controller
+    public class StateController : Controller
     {
         private readonly IStateService stateService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.StateDataController"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.StateController"/> class.
         /// </summary>
         /// <param name="stateService">StateData service.</param>
-        public StateDataController(IStateService stateService)
+        public StateController(IStateService stateService)
         {
             this.stateService = stateService;
         }
 
         /// <summary>
-        /// Responds to the URL: GET /userinfo/api/v1/country
+        /// Responds to the URL: GET /userinfo/api/v1/state
         /// Retrieves all records.
         /// </summary>
         /// <returns>A list of all countries</returns>
@@ -48,7 +48,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
-        /// Responds to the URL: GET /userinfo/api/v1/country/{id}.
+        /// Responds to the URL: GET /userinfo/api/v1/state/{id}.
         /// Where {id} is a placeholder for the id to look for.
         /// </summary>
         /// <returns>A HTTP Not Found or object found</returns>
@@ -65,7 +65,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
-        /// Responds to the URL: POST /userinfo/api/v1/country
+        /// Responds to the URL: POST /userinfo/api/v1/state
         /// Create a record in storage.
         /// </summary>
         /// <returns>The created record and HTTP status created</returns>
@@ -83,7 +83,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
-        /// Responds to URL: PUT /userinfo/api/v1/country/{id}.
+        /// Responds to URL: PUT /userinfo/api/v1/state/{id}.
         /// Where {id} is a placeholder for the id to look for.
         /// </summary>
         /// <returns>A bad request if parameters are not corrrect.
@@ -108,6 +108,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
+        /// Responds to URL: DELETE /userinfo/api/v1/state/{id}.
         /// Removes ID from storage.
         /// </summary>
         /// <returns>Not found if ID is not in storage.</returns>
