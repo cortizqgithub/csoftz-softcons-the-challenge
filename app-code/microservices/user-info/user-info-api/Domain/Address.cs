@@ -24,7 +24,7 @@ namespace CSoftZ.User.Info.Api.Domain
         public City City { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:User.Info.Api.Domain.Address"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.Address"/> class.
         /// </summary>
         public Address()
         {

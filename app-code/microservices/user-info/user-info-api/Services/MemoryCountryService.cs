@@ -27,7 +27,7 @@ namespace CSoftZ.User.Info.Api.Services
         private List<Country> countries;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:User.Info.Api.Services.MemoryCountryService"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Services.MemoryCountryService"/> class.
         /// </summary>
         public MemoryCountryService()
         {

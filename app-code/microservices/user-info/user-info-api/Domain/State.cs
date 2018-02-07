@@ -25,7 +25,7 @@ namespace CSoftZ.User.Info.Api.Domain
 
         /// <summary>
         /// Default Constructor.
-        /// Initializes a new instance of the <see cref="T:User.Info.Api.Domain.State"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.State"/> class.
         /// </summary>
         public State()
         {

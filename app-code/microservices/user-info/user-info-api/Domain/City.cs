@@ -24,7 +24,7 @@ namespace CSoftZ.User.Info.Api.Domain
         public State State { get; set; }
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:User.Info.Api.Domain.City"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.City"/> class.
         /// </summary>
         public City()
         {

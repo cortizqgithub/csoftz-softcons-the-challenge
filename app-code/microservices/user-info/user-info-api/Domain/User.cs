@@ -25,7 +25,7 @@ namespace CSoftZ.User.Info.Api.Domain
         public List<Address> Addresses { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:User.Info.Api.Domain.User"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.User"/> class.
         /// </summary>
         public User()
         {
