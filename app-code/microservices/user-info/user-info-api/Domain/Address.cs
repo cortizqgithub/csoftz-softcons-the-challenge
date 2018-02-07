@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------*/
-/* Source File:   ADDRESS.CS                                                  */
-/* Description:   Domain class to handle Address information.                 */
+/* Source File:   ADDRESSDATA.CS                                              */
+/* Description:   Domain class to handle AddressData information.             */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.06/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
@@ -15,22 +15,22 @@
 namespace CSoftZ.User.Info.Api.Domain
 {
     /// <summary>
-    /// Domain class to handle Address information.
+    /// Domain class to handle AddressData information.
     /// </summary>
-    public class Address
+    public class AddressData
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public City City { get; set; }
+        public CityData CityData { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.Address"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.AddressData"/> class.
         /// </summary>
-        public Address()
+        public AddressData()
         {
             this.Id = 0;
             this.Name = "";
-            this.City = new City();
+            this.CityData = new CityData();
         }
     }
 }

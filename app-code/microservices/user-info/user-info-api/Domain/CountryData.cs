@@ -1,6 +1,6 @@
-﻿/*----------------------------------------------------------------------------*/
-/* Source File:   USER.CS                                                     */
-/* Description:   Domain class to handle User information.                    */
+/*----------------------------------------------------------------------------*/
+/* Source File:   COUNTRYDATA.CS                                              */
+/* Description:   Domain class to handle CountryData information.             */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.06/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
@@ -11,27 +11,25 @@
  History
  Feb.06/2018 COQ  File created.
  -----------------------------------------------------------------------------*/
-using System.Collections.Generic;
 
 namespace CSoftZ.User.Info.Api.Domain
 {
     /// <summary>
-    /// Domain class to handle User information.
+    /// Domain class to handle CountryData information.
     /// </summary>
-    public class User
+    public class CountryData
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public List<Address> Addresses { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.User"/> class.
+        /// Default Constructor.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.CountryData"/> class.
         /// </summary>
-        public User()
+        public CountryData()
         {
             this.Id = 0;
             this.Name = "";
-            this.Addresses = new List<Address>();
         }
     }
 }

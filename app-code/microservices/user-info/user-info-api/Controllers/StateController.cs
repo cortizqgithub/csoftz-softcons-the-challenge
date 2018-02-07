@@ -1,15 +1,15 @@
-/*----------------------------------------------------------------------------*/
-/* Source File:   COUNTRYCONTROLLER.CS                                        */
-/* Description:   MVC Controller to manage CountryData information.               */
+﻿/*----------------------------------------------------------------------------*/
+/* Source File:   STATECONTROLLER.CS                                          */
+/* Description:   MVC Controller to manage StateData information.                 */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
-/* Date:          Feb.06/2018                                                 */
+/* Date:          Feb.07/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------
  History
- Feb.06/2018 COQ  File created.
+ Feb.07/2018 COQ  File created.
  -----------------------------------------------------------------------------*/
 
 using System.Collections.Generic;
@@ -20,20 +20,20 @@ using CSoftZ.User.Info.Api.Services.Interfaces;
 namespace CSoftZ.User.Info.Api.Controllers
 {
     /// <summary>
-    /// MVC Controller to manage CountryData information.
+    /// MVC Controller to manage StateData information.
     /// </summary>
     [Route("userinfo/api/v1/[controller]")]
-    public class CountryDataController : Controller
+    public class StateDataController : Controller
     {
-        private readonly ICountryService countryService;
+        private readonly IStateService stateService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:User.Info.Api.Controllers.CountryDataController"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.StateDataController"/> class.
         /// </summary>
-        /// <param name="countryService">CountryData service.</param>
-        public CountryDataController(ICountryService countryService)
+        /// <param name="stateService">StateData service.</param>
+        public StateDataController(IStateService stateService)
         {
-            this.countryService = countryService;
+            this.stateService = stateService;
         }
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// </summary>
         /// <returns>A list of all countries</returns>
         [HttpGet]
-        public List<CountryData> GetAll()
+        public List<StateData> GetAll()
         {
-            return countryService.GetAll();
+            return stateService.GetAll();
         }
 
         /// <summary>
@@ -53,10 +53,10 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// </summary>
         /// <returns>A HTTP Not Found or object found</returns>
         /// <param name="id">Identifier to look up.</param>
-        [HttpGet("{id}", Name = "GetCountryData")]
+        [HttpGet("{id}", Name = "GetStateData")]
         public IActionResult GetById(long id)
         {
-            var item = countryService.GetById(id);
+            var item = stateService.GetById(id);
             if (item == null)
             {
                 return NotFound();
@@ -71,15 +71,15 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <returns>The created record and HTTP status created</returns>
         /// <param name="item">Record information to create.</param>
         [HttpPost]
-        public IActionResult Create([FromBody] CountryData item)
+        public IActionResult Create([FromBody] StateData item)
         {
             if (item == null)
             {
                 return BadRequest();
             }
 
-            var info = countryService.Create(item);
-            return CreatedAtRoute("GetCountryData", new { id = info.Id }, info);
+            var info = stateService.Create(item);
+            return CreatedAtRoute("GetStateData", new { id = info.Id }, info);
         }
 
         /// <summary>
@@ -92,14 +92,14 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <param name="id">Identifier to update.</param>
         /// <param name="item">Record information to update.</param>
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] CountryData item)
+        public IActionResult Update(long id, [FromBody] StateData item)
         {
             if (item == null || item.Id != id)
             {
                 return BadRequest();
             }
 
-            var info = countryService.Update(item);
+            var info = stateService.Update(item);
             if (info == null)
             {
                 return NotFound();
@@ -115,7 +115,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var info = countryService.Remove(id);
+            var info = stateService.Remove(id);
             if (info == null)
             {
                 return NotFound();

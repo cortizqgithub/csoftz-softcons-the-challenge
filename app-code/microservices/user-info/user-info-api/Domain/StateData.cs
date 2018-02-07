@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------*/
-/* Source File:   STATE.CS                                                    */
-/* Description:   Domain class to handle State information.                   */
+/* Source File:   STATEDATA.CS                                                */
+/* Description:   Domain class to handle StateData information.               */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.06/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
@@ -15,23 +15,23 @@
 namespace CSoftZ.User.Info.Api.Domain
 {
     /// <summary>
-    /// Domain class to handle State information.
+    /// Domain class to handle StateData information.
     /// </summary>
-    public class State
+    public class StateData
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public Country Country { get; set; }
+        public CountryData CountryData { get; set; }
 
         /// <summary>
         /// Default Constructor.
-        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.State"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.StateData"/> class.
         /// </summary>
-        public State()
+        public StateData()
         {
             this.Id = 0;
             this.Name = "";
-            this.Country = new Country();
+            this.CountryData = new CountryData();
         }
     }
 }

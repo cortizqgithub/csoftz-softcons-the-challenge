@@ -1,6 +1,6 @@
 /*----------------------------------------------------------------------------*/
-/* Source File:   CITY.CS                                                     */
-/* Description:   Domain class to handle City information.                    */
+/* Source File:   CITYDATA.CS                                                 */
+/* Description:   Domain class to handle CityData information.                */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.06/2018                                                 */
 /* Last Modified: Feb.07/2018                                                 */
@@ -15,22 +15,22 @@
 namespace CSoftZ.User.Info.Api.Domain
 {
     /// <summary>
-    /// Domain class to handle City information.
+    /// Domain class to handle CityData information.
     /// </summary>
-    public class City
+    public class CityData
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public State State { get; set; }
+        public StateData StateData { get; set; }
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.City"/> class.
+        /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Domain.CityData"/> class.
         /// </summary>
-        public City()
+        public CityData()
         {
             this.Id = 0;
             this.Name = "";
-            this.State = new State();
+            this.StateData = new StateData();
         }
     }
 }
