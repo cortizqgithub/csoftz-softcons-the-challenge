@@ -44,7 +44,9 @@ namespace CSoftZ.User.Info.Api
             services.AddSingleton<IStateService>(new MemoryStateService());
             services.AddSingleton<ICityService>(new MemoryCityService());
             services.AddSingleton<IAddressService>(new MemoryAddressService());
+            services.AddSingleton<IUserService>(new MemoryUserService());
             services.AddMvc();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
