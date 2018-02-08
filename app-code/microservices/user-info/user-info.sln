@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "user-info-api", "user-info-api\user-info-api.csproj", "{A106456B-D436-4187-B050-3FC06D7D8777}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "user-info-webmvc", "user-info-webmvc\user-info-webmvc.csproj", "{A1489AEA-981D-4176-8446-B6141FC57FA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{A106456B-D436-4187-B050-3FC06D7D8777}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A106456B-D436-4187-B050-3FC06D7D8777}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A106456B-D436-4187-B050-3FC06D7D8777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1489AEA-981D-4176-8446-B6141FC57FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1489AEA-981D-4176-8446-B6141FC57FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1489AEA-981D-4176-8446-B6141FC57FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1489AEA-981D-4176-8446-B6141FC57FA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
