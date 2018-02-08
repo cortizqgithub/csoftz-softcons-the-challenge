@@ -14,5 +14,9 @@
 
   <ItemGroup>
     <Folder Include="Views\Country\" />
+    <Folder Include="Views\State\" />
+    <Folder Include="Views\City\" />
+    <Folder Include="Views\Address\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
 </Project>
