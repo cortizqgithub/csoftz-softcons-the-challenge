@@ -1,0 +1,22 @@
+= csoftz-softcons-the-challenge README
+
+V1.0.0-Feb.08/2018
+
+Here we can find an excersise a CRUD interface for users.
+The user has many addresses and the 'address' belongs to a 'city', then a 'city' 
+belongs to a 'state' and then a 'state' belongs to a city.
+
+Here we find some folders.
+The main folder is named 'app-code' which contains all the source code for the solution.
+Therein you can find two folders named: 'client' and 'microservices'.
+The 'client' contains an ANGULAR (version 5.x using the Angular CLI to build it) 
+project. NOTE: Not usable.
+
+The 'microservices' folder holds a ASP.NET Core (Version 2.x) solution, it is
+thought as it were to be a microservice.
+
+The .NET solution holds two projects. One is a ASP.NET Core Web API which implements
+the whole Rest API. NOTE: All data is held in memory, thus if server is restared, all
+saved data is destroyed.
+
+The other project is ASP.NET Core MVC Web App to consume that API.
