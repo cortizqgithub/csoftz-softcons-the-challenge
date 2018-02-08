@@ -45,8 +45,20 @@ namespace CSoftZ.User.Info.Api
             services.AddSingleton<ICityService>(new MemoryCityService());
             services.AddSingleton<IAddressService>(new MemoryAddressService());
             services.AddSingleton<IUserService>(new MemoryUserService());
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                    });
+            });
             services.AddMvc();
-            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,7 +68,7 @@ namespace CSoftZ.User.Info.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("AllowAll");
             app.UseMvc();
         }
     }
