@@ -6,17 +6,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
-    var url = "http://localhost:5000/userinfo/api/v1/country";
+    var url = "http://localhost:5000/userinfo/api/v1/city";
     function loadInfo(){
         var options = {};
         options.url = url;
         options.type = "GET";
         options.dataType = "json";
         options.success = function (data) {
-            $("#country-list").empty();
+            $("#city-list").empty();
             data.forEach(function (element) {
-                $("#country-list").append("<li>" 
-                + element.id + "-" + element.name + "</li>");
+                $("#city-list").append("<li>" 
+                     + element.id + "-"
+                     + element.name + "-" 
+                     + element.stateData.name + "-" 
+                     + element.stateData.countryData.name
+                     + "</li>");
             });
         };
         options.error = function () {
@@ -50,7 +54,7 @@
 
             $("#update").click(function () {
                 var options = {};
-                options.url = url + $("#id").val();
+                options.url = url + "/" +  $("#id").val();
                 options.type = "PUT";
 
                 var obj = {};
@@ -72,7 +76,7 @@
     
             $("#delete").click(function () {
                 var options = {};
-                options.url = url + $("#id").val();
+                options.url = url + "/" +  $("#id").val();
                 options.type = "DELETE";
                 options.datatype = "json";
                 options.success = function (msg) {
@@ -91,7 +95,7 @@
 </script>
 <h1>City List</h1>
 <p id="msg"></p>
-<div id="country-list"></div>
+<div id="city-list"></div>
 <form>
     <table border="1">
         <tr>
@@ -99,7 +103,7 @@
             <td><input id="id" type="text" /></td>
         </tr>
         <tr>
-            <td>Country :</td>
+            <td>city :</td>
             <td><input id="name" type="text" /></td>
         </tr>
         <tr>
