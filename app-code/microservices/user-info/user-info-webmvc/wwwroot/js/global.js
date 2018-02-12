@@ -4,6 +4,7 @@
 
 var urlCountry = "http://localhost:5000/userinfo/api/v1/country";
 var urlState = "http://localhost:5000/userinfo/api/v1/state";
+var urlStateInCountry = "http://localhost:5000/userinfo/api/v1/state/all/country/";
 var urlCity = "http://localhost:5000/userinfo/api/v1/city";
 var urlAddress = "http://localhost:5000/userinfo/api/v1/address";
 var urlUser = "http://localhost:5000/userinfo/api/v1/user";
@@ -27,24 +28,7 @@ function loadCountries() {
 
 function loadStates(idCountry) {
     var options = {};
-    options.url = urlState;
-    options.type = "GET";
-    options.dataType = "json";
-    options.success = function (data) {
-        $("#states").empty();
-        data.forEach(function (element) {
-            $("#states").append("<option value=" + element.id + ">" + element.name + "</option>");
-        });
-    };
-    options.error = function () {
-        $("#msg").html("Error while calling the Web API!");
-    };
-    $.ajax(options);
-}
-
-function loadStates(idCountry) {
-    var options = {};
-    options.url = urlState;
+    options.url = urlStateInCountry + idCountry;
     options.type = "GET";
     options.dataType = "json";
     options.success = function (data) {

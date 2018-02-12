@@ -3,7 +3,7 @@
 /* Description:   MVC Controller to manage StateData information.             */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -45,6 +45,18 @@ namespace CSoftZ.User.Info.Api.Controllers
         public List<StateData> GetAll()
         {
             return stateService.GetAll();
+        }
+
+        /// <summary>
+        /// Responds to the URL: GET /userinfo/api/v1/state/{idCountry}
+        /// Gets all States that belongs to given country Id.
+        /// </summary>
+        /// <returns>List of States for Country</returns>
+        /// <param name="idCountry">Country Identifier.</param>
+        [HttpGet("all/country/{idCountry}")]
+        public List<StateData> GetAllByCountry(long idCountry)
+        {
+            return stateService.GetAllByCountry(idCountry);
         }
 
         /// <summary>

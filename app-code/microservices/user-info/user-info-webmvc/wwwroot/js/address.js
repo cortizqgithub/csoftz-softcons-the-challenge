@@ -85,9 +85,14 @@ $(document).ready(function () {
         };
         $.ajax(options);
     });
+
+    $("#countries").change(function () {
+        var idCountry = $("#countries option:selected").val();
+        loadStates(idCountry);
+    });
     loadCountries();
-    loadStates(1);
-    loadCities(1, 1);
+    //loadStates(1);
+    //loadCities(1, 1);
 
     loadInfo();
 });

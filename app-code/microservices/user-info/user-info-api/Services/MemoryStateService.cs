@@ -3,7 +3,7 @@
 /* Description:   Service implementation to manage StateData information.     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -49,6 +49,18 @@ namespace CSoftZ.User.Info.Api.Services
         public List<StateData> GetAll()
         {
             return states;
+        }
+
+        /// <summary>
+        /// Gets all States that belongs to given country Id.
+        /// </summary>
+        /// <returns>List of States for Country</returns>
+        /// <param name="idCountry">Country Identifier</param>
+        public List<StateData> GetAllByCountry(long idCountry)
+        {
+            return (from state in states
+                    where state.CountryData.Id == idCountry
+                    select state).ToList();
         }
 
         /// <summary>
