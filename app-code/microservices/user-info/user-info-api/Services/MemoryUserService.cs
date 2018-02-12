@@ -3,7 +3,7 @@
 /* Description:   Service implementation to manage UserData information.      */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -36,7 +36,11 @@ namespace CSoftZ.User.Info.Api.Services
 
             var userData = new UserData() { Id = 1, Name = "Charlie Brown" };
             userData.Addresses.Add(new AddressData() { Id = 1, Name = "Address 1", CityData = new CityData() { Id = 1, Name = GlobalConstants.CITY_COLOMBIA_ANTIOQUIA_MEDELLIN, StateData = new StateData() { Id = 1, Name = GlobalConstants.STATE_COLOMBIA_ANTIOQUIA, CountryData = new CountryData() { Id = 1, Name = GlobalConstants.COUNTRY_COLOMBIA } } } });
-            userData.Addresses.Add(new AddressData() { Id = 2, Name = "Address 2", CityData = new CityData() { Id = 3, Name = GlobalConstants.CITY_UNITED_STATES_FLORIDA, StateData = new StateData() { Id = 4, Name = GlobalConstants.STATE_UNITED_STATES_FLORIDA, CountryData = new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES } } } });
+            userData.Addresses.Add(new AddressData() { Id = 2, Name = "Address 2", CityData = new CityData() { Id = 3, Name = GlobalConstants.CITY_UNITED_STATES_FLORIDA_MIAMI, StateData = new StateData() { Id = 4, Name = GlobalConstants.STATE_UNITED_STATES_FLORIDA, CountryData = new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES } } } });
+            this.users.Add(userData);
+
+            userData = new UserData() { Id = 2, Name = "Juan Garcia" };
+            userData.Addresses.Add(new AddressData() { Id = 3, Name = "Address 3", CityData = new CityData() { Id = 5, Name = GlobalConstants.CITY_PERU_MADRE_DE_DIOS_MANU, StateData = new StateData() { Id = 6, Name = GlobalConstants.STATE_PERU_MADRE_DE_DIOS, CountryData = new CountryData() { Id = 3, Name = GlobalConstants.COUNTRY_PERU } } } });
             this.users.Add(userData);
         }
 
@@ -80,7 +84,8 @@ namespace CSoftZ.User.Info.Api.Services
         public UserData Update(UserData item)
         {
             var info = this.GetById(item.Id);
-            if (info != null){
+            if (info != null)
+            {
                 info.Name = item.Name;
             }
             return info;
@@ -94,7 +99,8 @@ namespace CSoftZ.User.Info.Api.Services
         public UserData Remove(long id)
         {
             var info = this.GetById(id);
-            if (info != null) {
+            if (info != null)
+            {
                 this.users.Remove(info);
             }
             return info;

@@ -3,7 +3,7 @@
 /* Description:   Global application Constants                                */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ                                                 */
 /*----------------------------------------------------------------------------*/
@@ -39,7 +39,7 @@ namespace CSoftZ.User.Info.Api.Helper.Consts
         public const string CITY_COLOMBIA_ANTIOQUIA_MEDELLIN = "Medellin";
         public const string CITY_COLOMBIA_ANTIOQUIA_CALDAS = "Caldas";
 
-        public const string CITY_UNITED_STATES_FLORIDA = "Miami";
+        public const string CITY_UNITED_STATES_FLORIDA_MIAMI = "Miami";
         public const string CITY_UNITED_STATES_NEW_YORK_NEW_YORK = "New York";
 
         public const string CITY_PERU_MADRE_DE_DIOS_MANU = "Manu";

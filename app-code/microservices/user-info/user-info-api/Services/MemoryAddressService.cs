@@ -34,7 +34,7 @@ namespace CSoftZ.User.Info.Api.Services
         {
             this.addresses = new List<AddressData>();
             this.addresses.Add(new AddressData() { Id = 1, Name = "Address 1", CityData = new CityData() { Id = 1, Name = GlobalConstants.CITY_COLOMBIA_ANTIOQUIA_MEDELLIN, StateData = new StateData() { Id = 1, Name = GlobalConstants.STATE_COLOMBIA_ANTIOQUIA, CountryData = new CountryData() { Id = 1, Name = GlobalConstants.COUNTRY_COLOMBIA } } } });
-            this.addresses.Add(new AddressData() { Id = 2, Name = "Address 2", CityData = new CityData() { Id = 3, Name = GlobalConstants.CITY_UNITED_STATES_FLORIDA, StateData = new StateData() { Id = 4, Name = GlobalConstants.STATE_UNITED_STATES_FLORIDA, CountryData = new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES } } } });
+            this.addresses.Add(new AddressData() { Id = 2, Name = "Address 2", CityData = new CityData() { Id = 3, Name = GlobalConstants.CITY_UNITED_STATES_FLORIDA_MIAMI, StateData = new StateData() { Id = 4, Name = GlobalConstants.STATE_UNITED_STATES_FLORIDA, CountryData = new CountryData() { Id = 2, Name = GlobalConstants.COUNTRY_UNITED_STATES } } } });
             this.addresses.Add(new AddressData() { Id = 3, Name = "Address 3", CityData = new CityData() { Id = 5, Name = GlobalConstants.CITY_PERU_MADRE_DE_DIOS_MANU, StateData = new StateData() { Id = 6, Name = GlobalConstants.STATE_PERU_MADRE_DE_DIOS, CountryData = new CountryData() { Id = 3, Name = GlobalConstants.COUNTRY_PERU } } } });
         }
 
