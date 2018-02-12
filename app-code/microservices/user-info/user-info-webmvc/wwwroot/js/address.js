@@ -88,11 +88,18 @@ $(document).ready(function () {
 
     $("#countries").change(function () {
         var idCountry = $("#countries option:selected").val();
-        loadStates(idCountry);
+        $("#cities").empty();
+        loadStatesAndCityDefault(idCountry);
+    });
+
+    $("#states").change(function () {
+        var idCountry = $("#countries option:selected").val();
+        var idState = $("#states option:selected").val();
+        loadCities(idCountry, idState);
     });
     loadCountries();
-    //loadStates(1);
-    //loadCities(1, 1);
+    loadStates(1);
+    loadCities(1, 1);
 
     loadInfo();
 });

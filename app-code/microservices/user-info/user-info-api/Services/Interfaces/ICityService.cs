@@ -1,9 +1,9 @@
 ﻿/*----------------------------------------------------------------------------*/
 /* Source File:   ICITYSERVICE.CS                                             */
-/* Description:   Service to manage CityData information.                         */
+/* Description:   Service to manage CityData information.                     */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.06/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -27,6 +27,14 @@ namespace CSoftZ.User.Info.Api.Services.Interfaces
         /// </summary>
         /// <returns>List of Countries</returns>
         List<CityData> GetAll();
+
+        /// <summary>
+        /// Get all cities of a state and country.
+        /// </summary>
+        /// <returns>A list of countries given the state and country ids.</returns>
+        /// <param name="idCountry">Country Identifier.</param>
+        /// <param name="idState">State Identifier.</param>
+        List<CityData> GetAllByCountryState(long idCountry, long idState);
 
         /// <summary>
         /// Tries to locate a record by the given Id in storage.

@@ -3,7 +3,7 @@
 /* Description:   MVC Controller to manage CityData information.              */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -45,6 +45,18 @@ namespace CSoftZ.User.Info.Api.Controllers
         public List<CityData> GetAll()
         {
             return cityService.GetAll();
+        }
+
+        /// <summary>
+        /// Gets all cities that belong to a State/Country.
+        /// </summary>
+        /// <returns>List of Cities</returns>
+        /// <param name="idCountry">Country Identifier.</param>
+        /// <param name="idState">State Identifier..</param>
+        [HttpGet("all/country/{idCountry}/state/{idState}")]
+        public List<CityData> GetAllByCountryState(long idCountry, long idState)
+        {
+            return cityService.GetAllByCountryState(idCountry, idState);
         }
 
         /// <summary>
