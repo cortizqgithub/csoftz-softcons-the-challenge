@@ -2,10 +2,9 @@
 // Created:  Feb.12/2018
 // Modified: Feb.12/2018
 
-var url = "http://localhost:5000/userinfo/api/v1/user";
 function loadInfo() {
     var options = {};
-    options.url = url;
+    options.url = urlUser;
     options.type = "GET";
     options.dataType = "json";
     options.success = function (data) {
@@ -39,7 +38,7 @@ function loadInfo() {
 $(document).ready(function () {
     $("#insert").click(function () {
         var options = {};
-        options.url = url;
+        options.url = urlUser;
         options.type = "POST";
 
         var obj = {};
@@ -61,7 +60,7 @@ $(document).ready(function () {
 
     $("#update").click(function () {
         var options = {};
-        options.url = url + "/" + $("#id").val();
+        options.url = urlUser + "/" + $("#id").val();
         options.type = "PUT";
 
         var obj = {};
@@ -83,7 +82,7 @@ $(document).ready(function () {
 
     $("#delete").click(function () {
         var options = {};
-        options.url = url + "/" + $("#id").val();
+        options.url = urlUser + "/" + $("#id").val();
         options.type = "DELETE";
         options.datatype = "json";
         options.success = function (msg) {
