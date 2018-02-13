@@ -3,7 +3,7 @@
 /* Description:   Service implementation to manage AddressData information.   */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -65,9 +65,9 @@ namespace CSoftZ.User.Info.Api.Services
         public AddressData Create(AddressData item)
         {
             var numItems = this.addresses.Count;
-            var newItem = new AddressData() { Id = numItems + 1, Name = item.Name };
-            this.addresses.Add(newItem);
-            return newItem;
+            item.Id = numItems + 1;
+            this.addresses.Add(item);
+            return item;
         }
 
         /// <summary>
@@ -81,6 +81,11 @@ namespace CSoftZ.User.Info.Api.Services
             if (info != null)
             {
                 info.Name = item.Name;
+                info.CityData.Id = item.CityData.Id;
+                info.CityData.Name = item.CityData.Name;
+                info.CityData.StateData.Id = item.CityData.StateData.Id;
+                info.CityData.StateData.CountryData.Id = item.CityData.StateData.CountryData.Id;
+                info.CityData.StateData.CountryData.Name = item.CityData.StateData.CountryData.Name;
             }
             return info;
         }

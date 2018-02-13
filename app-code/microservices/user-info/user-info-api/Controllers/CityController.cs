@@ -48,6 +48,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
+        /// Responds to the URL: GET /userinfo/api/v1/city/all/country/{idCountry}/state/{idState}
         /// Gets all cities that belong to a State/Country.
         /// </summary>
         /// <returns>List of Cities</returns>
@@ -83,14 +84,24 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <returns>The created record and HTTP status created</returns>
         /// <param name="item">Record information to create.</param>
         [HttpPost]
-        public IActionResult Create([FromBody] CityData item)
+        public IActionResult Create([FromBody] UserDataCommand item)
         {
             if (item == null)
             {
                 return BadRequest();
             }
 
-            var info = cityService.Create(item);
+            CityData cityData = new CityData();
+            cityData.Id = item.IdCity;
+            cityData.Name = item.CityName;
+            cityData.StateData = new StateData();
+            cityData.StateData.Id = item.IdState;
+            cityData.StateData.Name = item.StateName;
+            cityData.StateData.CountryData = new CountryData();
+            cityData.StateData.CountryData.Id = item.IdCountry;
+            cityData.StateData.CountryData.Name = item.CountryName;
+                
+            var info = cityService.Create(cityData);
             return CreatedAtRoute("GetCityData", new { id = info.Id }, info);
         }
 
@@ -104,14 +115,24 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <param name="id">Identifier to update.</param>
         /// <param name="item">Record information to update.</param>
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] CityData item)
+        public IActionResult Update(long id, [FromBody] UserDataCommand item)
         {
-            if (item == null || item.Id != id)
+            if (item == null || item.IdCity != id)
             {
                 return BadRequest();
             }
 
-            var info = cityService.Update(item);
+            CityData cityData = new CityData();
+            cityData.Id = item.IdCity;
+            cityData.Name = item.CityName;
+            cityData.StateData = new StateData();
+            cityData.StateData.Id = item.IdState;
+            cityData.StateData.Name = item.StateName;
+            cityData.StateData.CountryData = new CountryData();
+            cityData.StateData.CountryData.Id = item.IdCountry;
+            cityData.StateData.CountryData.Name = item.CountryName;
+
+            var info = cityService.Update(cityData);
             if (info == null)
             {
                 return NotFound();

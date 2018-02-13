@@ -5,12 +5,14 @@
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/global.js"></script>
-<script src="js/city.js"></script>
+<script src="js/city.js?v=20180212-6"></script>
 <h1>City List</h1>
 <p id="msg"></p>
 <div id="city-list"></div>
+<br/>
+<h2>Register User</h2>
 <form>
-    <table border="1">
+    <table>
         <tr>
             <td>Id:</td>
             <td><input id="id" type="text" /></td>
@@ -28,7 +30,10 @@
             <td><select id="states"></select></td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
                 <input type="button" id="insert" 
                        value="Insert" />
                 <input type="button" id="update" 
@@ -38,6 +43,4 @@
             </td>
         </tr>
     </table>
-    <br />
-    <div id="msg"></div>
 </form>

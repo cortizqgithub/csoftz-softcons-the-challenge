@@ -82,9 +82,9 @@ namespace CSoftZ.User.Info.Api.Services
         public CityData Create(CityData item)
         {
             var numItems = this.cities.Count;
-            var newItem = new CityData() { Id = numItems + 1, Name = item.Name };
-            this.cities.Add(newItem);
-            return newItem;
+            item.Id = numItems + 1;
+            this.cities.Add(item);
+            return item;
         }
 
         /// <summary>
@@ -98,6 +98,10 @@ namespace CSoftZ.User.Info.Api.Services
             if (info != null)
             {
                 info.Name = item.Name;
+                info.StateData.Id = item.StateData.Id;
+                info.StateData.Name = item.StateData.Name;
+                info.StateData.CountryData.Id = item.StateData.CountryData.Id;
+                info.StateData.CountryData.Name = item.StateData.CountryData.Name;
             }
             return info;
         }

@@ -15,6 +15,8 @@ function loadInfo() {
             userInfo += "<td>";
             element.addresses.forEach(function (addr) {
                 userInfo += "<li>"
+                    + addr.id 
+                    + "-"
                     + addr.name
                     + "-"
                     + addr.cityData.name
@@ -83,6 +85,47 @@ $(document).ready(function () {
     $("#delete").click(function () {
         var options = {};
         options.url = urlUser + "/" + $("#id").val();
+        options.type = "DELETE";
+        options.datatype = "json";
+        options.success = function (msg) {
+            $("#msg").html(msg);
+            loadInfo();
+        };
+        options.error = function (a, b, c) {
+            $("#msg").html("Error while calling the Web API!");
+        };
+        $.ajax(options);
+    });
+
+    $("#link").click(function () {
+        var options = {};
+        options.url = urlUser + "/link";
+
+        var obj = {};
+        obj.idUser = $("#id").val();
+        obj.idAddress = $("#addresses option:selected").val();
+
+        options.data = JSON.stringify(obj);
+        console.log(options.data);
+        console.log(options.url);
+        options.contentType = "application/json";
+        options.type = "POST";
+        options.datatype = "json";
+        options.success = function (msg) {
+            $("#msg").html(msg);
+            loadInfo();
+        };
+        options.error = function (a, b, c) {
+            $("#msg").html("Error while calling the Web API!");
+        };
+        $.ajax(options);
+    });
+
+    $("#unlink").click(function () {
+        var options = {};
+        options.url = urlUser + "/unlink/user/" + $("#id").val() +
+            "/address/" + $("#idAddress").val();
+        console.log(options.url);
         options.type = "DELETE";
         options.datatype = "json";
         options.success = function (msg) {

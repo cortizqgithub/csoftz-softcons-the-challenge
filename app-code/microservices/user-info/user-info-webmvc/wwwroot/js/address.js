@@ -33,9 +33,16 @@ $(document).ready(function () {
         options.type = "POST";
 
         var obj = {};
-        obj.name = $("#name").val();
+        obj.addressName = $("#name").val();
+        obj.idCountry = $("#countries option:selected").val();
+        obj.countryName = $("#countries option:selected").text();
+        obj.idState = $("#states option:selected").val();
+        obj.stateName = $("#states option:selected").text();
+        obj.idCity = $("#cities option:selected").val();
+        obj.cityName = $("#cities option:selected").text();
 
         options.data = JSON.stringify(obj);
+        console.log(options.data);
         options.contentType = "application/json";
         options.dataType = "json";
 
@@ -55,10 +62,17 @@ $(document).ready(function () {
         options.type = "PUT";
 
         var obj = {};
-        obj.id = $("#id").val();
-        obj.name = $("#name").val();
+        obj.idAddress = $("#id").val();
+        obj.addressName = $("#name").val();
+        obj.idCountry = $("#countries option:selected").val();
+        obj.countryName = $("#countries option:selected").text();
+        obj.idState = $("#states option:selected").val();
+        obj.stateName = $("#states option:selected").text();
+        obj.idCity = $("#cities option:selected").val();
+        obj.cityName = $("#cities option:selected").text();
 
         options.data = JSON.stringify(obj);
+        console.log(options.data);
         options.contentType = "application/json";
         options.dataType = "json";
         options.success = function (msg) {

@@ -5,12 +5,14 @@
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/global.js"></script>
-<script src="js/state.js"></script>
+<script src="js/state.js?v=20180212-4"></script>
 <h1>State List</h1>
 <p id="msg"></p>
 <div id="state-list"></div>
+<br/>
+<h2>Register State</h2>
 <form>
-    <table border="1">
+    <table>
         <tr>
             <td>Id:</td>
             <td><input id="id" type="text" /></td>
@@ -24,7 +26,10 @@
             <td><select id="countries"></select></td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
                 <input type="button" id="insert" 
                        value="Insert" />
                 <input type="button" id="update" 
@@ -34,6 +39,4 @@
             </td>
         </tr>
     </table>
-    <br />
-    <div id="msg"></div>
 </form>

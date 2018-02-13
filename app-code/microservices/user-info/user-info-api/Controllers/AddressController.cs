@@ -3,7 +3,7 @@
 /* Description:   MVC Controller to manage AddressData information.           */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -71,14 +71,26 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <returns>The created record and HTTP status created</returns>
         /// <param name="item">Record information to create.</param>
         [HttpPost]
-        public IActionResult Create([FromBody] AddressData item)
+        public IActionResult Create([FromBody] UserDataCommand item)
         {
             if (item == null)
             {
                 return BadRequest();
             }
 
-            var info = addressService.Create(item);
+            AddressData addressData = new AddressData();
+            addressData.Name = item.AddressName;
+            addressData.CityData = new CityData();
+            addressData.CityData.Id = item.IdCity;
+            addressData.CityData.Name = item.CityName;
+            addressData.CityData.StateData = new StateData();
+            addressData.CityData.StateData.Id = item.IdState;
+            addressData.CityData.StateData.Name = item.StateName;
+            addressData.CityData.StateData.CountryData = new CountryData();
+            addressData.CityData.StateData.CountryData.Id = item.IdCountry;
+            addressData.CityData.StateData.CountryData.Name = item.CountryName;
+
+            var info = addressService.Create(addressData);
             return CreatedAtRoute("GetAddressData", new { id = info.Id }, info);
         }
 
@@ -92,14 +104,27 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <param name="id">Identifier to update.</param>
         /// <param name="item">Record information to update.</param>
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] AddressData item)
+        public IActionResult Update(long id, [FromBody] UserDataCommand item)
         {
-            if (item == null || item.Id != id)
+            if (item == null || item.IdAddress != id)
             {
                 return BadRequest();
             }
 
-            var info = addressService.Update(item);
+            AddressData addressData = new AddressData();
+            addressData.Id = item.IdAddress;
+            addressData.Name = item.AddressName;
+            addressData.CityData = new CityData();
+            addressData.CityData.Id = item.IdCity;
+            addressData.CityData.Name = item.CityName;
+            addressData.CityData.StateData = new StateData();
+            addressData.CityData.StateData.Id = item.IdState;
+            addressData.CityData.StateData.Name = item.StateName;
+            addressData.CityData.StateData.CountryData = new CountryData();
+            addressData.CityData.StateData.CountryData.Id = item.IdCountry;
+            addressData.CityData.StateData.CountryData.Name = item.CountryName;
+
+            var info = addressService.Update(addressData);
             if (info == null)
             {
                 return NotFound();

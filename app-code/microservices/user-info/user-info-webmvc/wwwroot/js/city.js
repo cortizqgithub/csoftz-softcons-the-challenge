@@ -32,7 +32,11 @@ $(document).ready(function () {
         options.type = "POST";
 
         var obj = {};
-        obj.name = $("#name").val();
+        obj.cityName = $("#name").val();
+        obj.idCountry = $("#countries option:selected").val();
+        obj.countryName = $("#countries option:selected").text();
+        obj.idState = $("#states option:selected").val();
+        obj.stateName = $("#states option:selected").text();
 
         options.data = JSON.stringify(obj);
         options.contentType = "application/json";
@@ -54,10 +58,15 @@ $(document).ready(function () {
         options.type = "PUT";
 
         var obj = {};
-        obj.id = $("#id").val();
-        obj.name = $("#name").val();
+        obj.idCity = $("#id").val();
+        obj.cityName = $("#name").val();
+        obj.idCountry = $("#countries option:selected").val();
+        obj.countryName = $("#countries option:selected").text();
+        obj.idState = $("#states option:selected").val();
+        obj.stateName = $("#states option:selected").text();
 
         options.data = JSON.stringify(obj);
+        console.log(options.data);
         options.contentType = "application/json";
         options.dataType = "json";
         options.success = function (msg) {

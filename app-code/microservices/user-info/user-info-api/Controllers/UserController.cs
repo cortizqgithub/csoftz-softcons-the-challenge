@@ -3,7 +3,7 @@
 /* Description:   MVC Controller to manage UserData information.              */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.07/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -26,14 +26,17 @@ namespace CSoftZ.User.Info.Api.Controllers
     public class UserController : Controller
     {
         private readonly IUserService userService;
+        private readonly IAddressService addressService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:CSoftZ.User.Info.Api.Controllers.UserController"/> class.
         /// </summary>
         /// <param name="userService">User service.</param>
-        public UserController(IUserService userService)
+        /// <param name="addressService">Address service.</param>
+        public UserController(IUserService userService, IAddressService addressService)
         {
             this.userService = userService;
+            this.addressService = addressService;
         }
 
         /// <summary>
@@ -121,6 +124,43 @@ namespace CSoftZ.User.Info.Api.Controllers
             {
                 return NotFound();
             }
+            return new NoContentResult();
+        }
+
+        /// <summary>
+        /// Associates the address to user.
+        /// </summary>
+        /// <returns>Bad Request if not info to use for unsucessfull operation
+        /// and No Content if sucessfull operation.</returns>
+        /// <param name="item">Item.</param>
+        [HttpPost("link")]
+        public IActionResult LinkAddress([FromBody] UserDataCommand item)
+        {
+            if (item == null)
+            {
+                return BadRequest();
+            }
+            var idUser = item.IdUser;
+            var idAddress = item.IdAddress;
+            var address = addressService.GetById(idAddress);
+            if (address == null)
+            {
+                return BadRequest();
+            }
+            userService.LinkAddress(idUser, address);
+            return new NoContentResult();
+        }
+
+        /// <summary>
+        /// Disassociates the address to user.
+        /// </summary>
+        /// <returns>Not found if ID is not in storage</returns>
+        /// <param name="idUser">User Identifier.</param>
+        /// <param name="idAddress">Address Identifier.</param>
+        [HttpDelete("unlink/user/{idUser}/address/{idAddress}")]
+        public IActionResult UnlinkAddress(long idUser, long idAddress)
+        {
+            userService.UnlinkAddress(idUser, idAddress);
             return new NoContentResult();
         }
     }

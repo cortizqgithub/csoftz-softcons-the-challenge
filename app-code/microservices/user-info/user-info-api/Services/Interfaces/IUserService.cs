@@ -3,7 +3,7 @@
 /* Description:   Service to manage User information.                         */
 /* Author:        Carlos Adolfo Ortiz Quirós (COQ)                            */
 /* Date:          Feb.06/2018                                                 */
-/* Last Modified: Feb.07/2018                                                 */
+/* Last Modified: Feb.12/2018                                                 */
 /* Version:       1.1                                                         */
 /* Copyright (c), 2018 CSoftZ.                                                */
 /*----------------------------------------------------------------------------*/
@@ -54,6 +54,20 @@ namespace CSoftZ.User.Info.Api.Services.Interfaces
         /// </summary>
         /// <returns>The remove.</returns>
         /// <param name="id">Identifier to look for.</param>
-        UserData Remove(long id);  
+        UserData Remove(long id);
+
+        /// <summary>
+        /// Associates the address to user
+        /// </summary>
+        /// <param name="idUser">User Identifier.</param>
+        /// <param name="address">Address reference to link.</param>
+        void LinkAddress(long idUser, AddressData address);
+
+        /// <summary>
+        /// Unlinks the address.
+        /// </summary>
+        /// <param name="idUser">Identifier user.</param>
+        /// <param name="idAddress">Identifier address.</param>
+        void UnlinkAddress(long idUser, long idAddress);
     }
 }

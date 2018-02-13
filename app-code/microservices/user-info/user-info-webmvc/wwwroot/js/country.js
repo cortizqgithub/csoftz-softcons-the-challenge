@@ -1,17 +1,17 @@
-// File:     STATE.JS
+﻿// File:     COUNTRY.JS
 // Created:  Feb.12/2018
 // Modified: Feb.12/2018
 
 function loadInfo() {
     var options = {};
-    options.url = urlState;
+    options.url = urlCountry;
     options.type = "GET";
     options.dataType = "json";
     options.success = function (data) {
-        $("#state-list").empty();
+        $("#country-list").empty();
         data.forEach(function (element) {
-            $("#state-list").append("<li>"
-                + element.id + "-" + element.name + "-" + element.countryData.name + "</li>");
+            $("#country-list").append("<li>"
+                + element.id + "-" + element.name + "</li>");
         });
     };
     options.error = function () {
@@ -23,13 +23,11 @@ function loadInfo() {
 $(document).ready(function () {
     $("#insert").click(function () {
         var options = {};
-        options.url = urlState;
+        options.url = urlCountry;
         options.type = "POST";
 
         var obj = {};
-        obj.stateName = $("#name").val();
-        obj.idCountry = $("#countries option:selected").val();
-        obj.countryName = $("#countries option:selected").text();
+        obj.name = $("#name").val();
 
         options.data = JSON.stringify(obj);
         options.contentType = "application/json";
@@ -47,14 +45,12 @@ $(document).ready(function () {
 
     $("#update").click(function () {
         var options = {};
-        options.url = urlState + "/" + $("#id").val();
+        options.url = urlCountry + "/" + $("#id").val();
         options.type = "PUT";
 
         var obj = {};
-        obj.idState = $("#id").val();
-        obj.stateName = $("#name").val();
-        obj.idCountry = $("#countries option:selected").val();
-        obj.countryName = $("#countries option:selected").text();
+        obj.id = $("#id").val();
+        obj.name = $("#name").val();
 
         options.data = JSON.stringify(obj);
         options.contentType = "application/json";
@@ -71,7 +67,7 @@ $(document).ready(function () {
 
     $("#delete").click(function () {
         var options = {};
-        options.url = urlState + "/" + $("#id").val();
+        options.url = urlCountry + "/" + $("#id").val();
         options.type = "DELETE";
         options.datatype = "json";
         options.success = function (msg) {
@@ -83,6 +79,5 @@ $(document).ready(function () {
         };
         $.ajax(options);
     });
-    loadCountries();
     loadInfo();
 });

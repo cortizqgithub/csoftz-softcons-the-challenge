@@ -48,7 +48,7 @@ namespace CSoftZ.User.Info.Api.Controllers
         }
 
         /// <summary>
-        /// Responds to the URL: GET /userinfo/api/v1/state/{idCountry}
+        /// Responds to the URL: GET /userinfo/api/v1/state/all/country/{idCountry}
         /// Gets all States that belongs to given country Id.
         /// </summary>
         /// <returns>List of States for Country</returns>
@@ -83,14 +83,19 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <returns>The created record and HTTP status created</returns>
         /// <param name="item">Record information to create.</param>
         [HttpPost]
-        public IActionResult Create([FromBody] StateData item)
+        public IActionResult Create([FromBody] UserDataCommand item)
         {
             if (item == null)
             {
                 return BadRequest();
             }
+            StateData stateData = new StateData();
+            stateData.Name = item.StateName;
+            stateData.CountryData = new CountryData();
+            stateData.CountryData.Id = item.IdCountry;
+            stateData.CountryData.Name = item.CountryName;
 
-            var info = stateService.Create(item);
+            var info = stateService.Create(stateData);
             return CreatedAtRoute("GetStateData", new { id = info.Id }, info);
         }
 
@@ -104,19 +109,25 @@ namespace CSoftZ.User.Info.Api.Controllers
         /// <param name="id">Identifier to update.</param>
         /// <param name="item">Record information to update.</param>
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] StateData item)
+        public IActionResult Update(long id, [FromBody] UserDataCommand item)
         {
-            if (item == null || item.Id != id)
+            if (item == null || item.IdState != id)
             {
                 return BadRequest();
             }
 
-            var info = stateService.Update(item);
+            StateData stateData = new StateData();
+            stateData.Id = item.IdState;
+            stateData.Name = item.StateName;
+            stateData.CountryData = new CountryData();
+            stateData.CountryData.Id = item.IdCountry;
+            stateData.CountryData.Name = item.CountryName;
+            var info = stateService.Update(stateData);
             if (info == null)
             {
                 return NotFound();
             }
-            return new ObjectResult(item);
+            return new ObjectResult(info);
         }
 
         /// <summary>

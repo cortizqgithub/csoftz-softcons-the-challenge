@@ -81,9 +81,10 @@ namespace CSoftZ.User.Info.Api.Services
         public StateData Create(StateData item)
         {
             var numItems = this.states.Count;
-            var newItem = new StateData() { Id = numItems + 1, Name = item.Name };
-            this.states.Add(newItem);
-            return newItem;
+
+            item.Id = numItems + 1;
+            this.states.Add(item);
+            return item;
         }
 
         /// <summary>
@@ -97,6 +98,8 @@ namespace CSoftZ.User.Info.Api.Services
             if (info != null)
             {
                 info.Name = item.Name;
+                info.CountryData.Id = item.CountryData.Id;
+                info.CountryData.Name = item.CountryData.Name;
             }
             return info;
         }

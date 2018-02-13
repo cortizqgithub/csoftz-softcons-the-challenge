@@ -105,5 +105,37 @@ namespace CSoftZ.User.Info.Api.Services
             }
             return info;
         }
+
+        /// <summary>
+        /// Associates the address to user
+        /// </summary>
+        /// <param name="idUser">User Identifier.</param>
+        /// <param name="address">Address reference to link.</param>
+        public void LinkAddress(long idUser, AddressData address)
+        {
+            var info = this.GetById(idUser);
+            if (info != null)
+            {
+                info.Addresses.Add(address);
+            }
+        }
+
+        /// <summary>
+        /// Unlinks the address.
+        /// </summary>
+        /// <param name="idUser">Identifier user.</param>
+        /// <param name="idAddress">Identifier address.</param>
+        public void UnlinkAddress(long idUser, long idAddress)
+        {
+            var info = this.GetById(idUser);
+            if (info != null)
+            {
+                var address = info.Addresses.FirstOrDefault(a => a.Id == idAddress);
+                if (address != null)
+                {
+                    info.Addresses.Remove(address);
+                }
+            }
+        }
     }
 }
