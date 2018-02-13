@@ -1,6 +1,6 @@
 // File:     ADDRESS.JS
 // Created:  Feb.12/2018
-// Modified: Feb.12/2018
+// Modified: Feb.13/2018
 
 function loadInfo() {
     var options = {};
@@ -28,76 +28,124 @@ function loadInfo() {
 
 $(document).ready(function () {
     $("#insert").click(function () {
-        var options = {};
-        options.url = urlAddress;
-        options.type = "POST";
+        var addressName = $("#name").val();
+        var stateName = $("#states option:selected").text();
+        var cityName = $("#cities option:selected").text();
+       
+        if (stateName === ""){
+            alert("You must select one State.");
+            $("#states").focus();
+            return;
+        }
 
-        var obj = {};
-        obj.addressName = $("#name").val();
-        obj.idCountry = $("#countries option:selected").val();
-        obj.countryName = $("#countries option:selected").text();
-        obj.idState = $("#states option:selected").val();
-        obj.stateName = $("#states option:selected").text();
-        obj.idCity = $("#cities option:selected").val();
-        obj.cityName = $("#cities option:selected").text();
+        if (cityName === "") {
+            alert("You must select one City.");
+            $("#cities").focus();
+            return;
+        }
 
-        options.data = JSON.stringify(obj);
-        console.log(options.data);
-        options.contentType = "application/json";
-        options.dataType = "json";
+        if (addressName === "") {
+            alert("You must type a name for the Address.");
+            $("#name").focus();
+        }
+        else {
+            var options = {};
+            options.url = urlAddress;
+            options.type = "POST";
 
-        options.success = function (msg) {
-            $("#msg").html(msg);
-            loadInfo();
-        };
-        options.error = function () {
-            $("#msg").html("Error while calling the Web API!");
-        };
-        $.ajax(options);
+            var obj = {};
+            obj.addressName = addressName;
+            obj.idCountry = $("#countries option:selected").val();
+            obj.countryName = $("#countries option:selected").text();
+            obj.idState = $("#states option:selected").val();
+            obj.stateName = $("#states option:selected").text();
+            obj.idCity = $("#cities option:selected").val();
+            obj.cityName = $("#cities option:selected").text();
+
+            options.data = JSON.stringify(obj);
+            console.log(options.data);
+            options.contentType = "application/json";
+            options.dataType = "json";
+
+            options.success = function (msg) {
+                $("#msg").html(msg);
+                loadInfo();
+            };
+            options.error = function () {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+        }
     });
 
     $("#update").click(function () {
-        var options = {};
-        options.url = urlAddress + "/" + $("#id").val();
-        options.type = "PUT";
+        var idAddress = $("#id").val();
+        var addressName = $("#name").val();
+        var isValid = true;
 
-        var obj = {};
-        obj.idAddress = $("#id").val();
-        obj.addressName = $("#name").val();
-        obj.idCountry = $("#countries option:selected").val();
-        obj.countryName = $("#countries option:selected").text();
-        obj.idState = $("#states option:selected").val();
-        obj.stateName = $("#states option:selected").text();
-        obj.idCity = $("#cities option:selected").val();
-        obj.cityName = $("#cities option:selected").text();
+        if (!isANumber(idAddress)) {
+            alert("Required ID is not a number");
+            $("#id").focus();
+            isValid = false;
+        }
 
-        options.data = JSON.stringify(obj);
-        console.log(options.data);
-        options.contentType = "application/json";
-        options.dataType = "json";
-        options.success = function (msg) {
-            $("#msg").html(msg);
-            loadInfo();
-        };
-        options.error = function (a, b, c) {
-            $("#msg").html("Error while calling the Web API!");
-        };
-        $.ajax(options);
+        if (addressName === "") {
+            alert("You must type a name for the Address.");
+            $("#name").focus();
+            isValid = false;
+        }
+
+        if (isValid) {
+            var options = {};
+            options.url = urlAddress + "/" + idAddress;
+            options.type = "PUT";
+
+            var obj = {};
+            obj.idAddress = idAddress;
+            obj.addressName = addressName;
+            obj.idCountry = $("#countries option:selected").val();
+            obj.countryName = $("#countries option:selected").text();
+            obj.idState = $("#states option:selected").val();
+            obj.stateName = $("#states option:selected").text();
+            obj.idCity = $("#cities option:selected").val();
+            obj.cityName = $("#cities option:selected").text();
+
+            options.data = JSON.stringify(obj);
+            console.log(options.data);
+            options.contentType = "application/json";
+            options.dataType = "json";
+            options.success = function (msg) {
+                $("#msg").html(msg);
+                loadInfo();
+            };
+            options.error = function (a, b, c) {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+        }
     });
 
     $("#delete").click(function () {
-        var options = {};
-        options.url = urlAddress + "/" + $("#id").val();
-        options.type = "DELETE";
-        options.datatype = "json";
-        options.success = function (msg) {
-            $("#msg").html(msg);
-            loadInfo();
-        };
-        options.error = function (a, b, c) {
-            $("#msg").html("Error while calling the Web API!");
-        };
-        $.ajax(options);
+        var idAddress = $("#id").val();
+
+        if (isANumber(idAddress)) {
+            var options = {};
+            options.url = urlAddress + "/" + idAddress;
+            options.type = "DELETE";
+            options.datatype = "json";
+            options.success = function (msg) {
+                $("#msg").html(msg);
+                loadInfo();
+            };
+            options.error = function (a, b, c) {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+        }
+        else {
+            alert("Required ID is not a number");
+            $("#id").focus();
+        }
     });
 
     $("#countries").change(function () {

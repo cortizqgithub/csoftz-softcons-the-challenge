@@ -1,6 +1,6 @@
 // File:     USER.JS
 // Created:  Feb.12/2018
-// Modified: Feb.12/2018
+// Modified: Feb.13/2018
 
 function loadInfo() {
     var options = {};
@@ -15,7 +15,7 @@ function loadInfo() {
             userInfo += "<td>";
             element.addresses.forEach(function (addr) {
                 userInfo += "<li>"
-                    + addr.id 
+                    + addr.id
                     + "-"
                     + addr.name
                     + "-"
@@ -39,70 +39,110 @@ function loadInfo() {
 
 $(document).ready(function () {
     $("#insert").click(function () {
-        var options = {};
-        options.url = urlUser;
-        options.type = "POST";
+        var userName = $("#name").val();
 
-        var obj = {};
-        obj.name = $("#name").val();
+        if (userName === "") {
+            alert("You must type a name for the User.");
+            $("#name").focus();
+        }
+        else {
+            var options = {};
+            options.url = urlUser;
+            options.type = "POST";
 
-        options.data = JSON.stringify(obj);
-        options.contentType = "application/json";
-        options.dataType = "json";
+            var obj = {};
+            obj.name = userName;
 
-        options.success = function (msg) {
-            $("#msg").html(msg);
-            loadInfo();
-        };
-        options.error = function () {
-            $("#msg").html("Error while calling the Web API!");
-        };
-        $.ajax(options);
+            options.data = JSON.stringify(obj);
+            options.contentType = "application/json";
+            options.dataType = "json";
+
+            options.success = function (msg) {
+                $("#msg").html(msg);
+                loadInfo();
+            };
+            options.error = function () {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+        }
     });
 
     $("#update").click(function () {
-        var options = {};
-        options.url = urlUser + "/" + $("#id").val();
-        options.type = "PUT";
+        var idUser = $("#id").val();
+        var userName = $("#name").val();
+        var isValid = true;
 
-        var obj = {};
-        obj.id = $("#id").val();
-        obj.name = $("#name").val();
+        if (!isANumber(idUser)) {
+            alert("Required ID is not a number");
+            $("#id").focus();
+            isValid = false;
+        }
 
-        options.data = JSON.stringify(obj);
-        options.contentType = "application/json";
-        options.dataType = "json";
-        options.success = function (msg) {
-            $("#msg").html(msg);
-            loadInfo();
-        };
-        options.error = function (a, b, c) {
-            $("#msg").html("Error while calling the Web API!");
-        };
-        $.ajax(options);
+        if (userName === "") {
+            alert("You must type a name for the User.");
+            $("#name").focus();
+            isValid = false;
+        }
+
+        if (isValid) {
+            var options = {};
+            options.url = urlUser + "/" + idUser;
+            options.type = "PUT";
+
+            var obj = {};
+            obj.id = idUser;
+            obj.name = userName;
+
+            options.data = JSON.stringify(obj);
+            options.contentType = "application/json";
+            options.dataType = "json";
+            options.success = function (msg) {
+                $("#msg").html(msg);
+                loadInfo();
+            };
+            options.error = function (a, b, c) {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+        }
     });
 
     $("#delete").click(function () {
-        var options = {};
-        options.url = urlUser + "/" + $("#id").val();
-        options.type = "DELETE";
-        options.datatype = "json";
-        options.success = function (msg) {
-            $("#msg").html(msg);
-            loadInfo();
-        };
-        options.error = function (a, b, c) {
-            $("#msg").html("Error while calling the Web API!");
-        };
-        $.ajax(options);
+        var idUser = $("#id").val();
+
+        if (isANumber(idUser)) {
+            var options = {};
+            options.url = urlUser + "/" + idUser;
+            options.type = "DELETE";
+            options.datatype = "json";
+            options.success = function (msg) {
+                $("#msg").html(msg);
+                loadInfo();
+            };
+            options.error = function (a, b, c) {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+        } else {
+            alert("Required ID is not a number");
+            $("#id").focus();
+        }
     });
 
     $("#link").click(function () {
+        var idUser = $("#id").val();
+
+        if (!isANumber(idUser)) {
+            alert("Required ID User is not a number");
+            $("#id").focus();
+            return;
+        }
         var options = {};
         options.url = urlUser + "/link";
 
         var obj = {};
-        obj.idUser = $("#id").val();
+        obj.idUser = idUser;
         obj.idAddress = $("#addresses option:selected").val();
 
         options.data = JSON.stringify(obj);
@@ -122,6 +162,20 @@ $(document).ready(function () {
     });
 
     $("#unlink").click(function () {
+        var idUser = $("#id").val();
+        var idAddress = $("#idAddress").val();
+
+        if (!isANumber(idUser)) {
+            alert("Required ID User is not a number");
+            $("#id").focus();
+            return;
+        }
+
+        if (!isANumber(idAddress)) {
+            alert("Required ID Address is not a number");
+            $("#idAddress").focus();
+            return;
+        }
         var options = {};
         options.url = urlUser + "/unlink/user/" + $("#id").val() +
             "/address/" + $("#idAddress").val();

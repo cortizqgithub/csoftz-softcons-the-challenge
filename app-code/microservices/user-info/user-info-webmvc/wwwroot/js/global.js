@@ -1,6 +1,6 @@
 ﻿// File:     GLOBAL.JS
 // Created:  Feb.12/2018
-// Modified: Feb.12/2018
+// Modified: Feb.13/2018
 
 var urlCountry = "http://localhost:5000/userinfo/api/v1/country";
 var urlState = "http://localhost:5000/userinfo/api/v1/state";
@@ -9,6 +9,12 @@ var urlCity = "http://localhost:5000/userinfo/api/v1/city";
 var urlCityInCountryState = "http://localhost:5000/userinfo/api/v1/city/all/country/{idCountry}/state/{idState}";
 var urlAddress = "http://localhost:5000/userinfo/api/v1/address";
 var urlUser = "http://localhost:5000/userinfo/api/v1/user";
+
+function isANumber(s) {
+    var numbers = /^[0-9]+$/;
+    var isNum = s.match(numbers);
+    return isNum;
+}
 
 function loadCountries() {
     var options = {};
